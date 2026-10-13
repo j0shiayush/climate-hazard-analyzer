@@ -2,12 +2,6 @@
 
 A full-stack web application that analyzes historical weather data to detect and visualize climate hazard trends (specifically heatwaves) for any geographic region over time. Built as a comprehensive solution for the Dygnify Ventures Full-Stack Developer Case Study.
 
-## 🚀 Live Demo & Links
-
-- **Frontend URL:** [Insert Vercel/Netlify Link Here]
-- **Backend API URL:** [Insert Render/Railway Link Here]
-- **Demo Video:** [Insert Loom/Google Drive Link Here]
-
 <img width="1458" height="928" alt="image" src="https://github.com/user-attachments/assets/b7bb9152-8995-4531-ae1e-cfecfd5e9958" />
 
 ---
