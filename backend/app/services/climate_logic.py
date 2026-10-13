@@ -1,4 +1,3 @@
-# app/services/climate_logic.py
 import pandas as pd
 import numpy as np
 
@@ -10,21 +9,17 @@ def detect_heatwaves(df: pd.DataFrame) -> dict:
     if df.empty:
         return {"events": [], "annual_stats": []}
 
-    # 1. Calculate the 95th percentile baseline
     threshold_95 = df["tmax"].quantile(0.95)
     
-    # 2. Identify days exceeding the threshold
     df["is_hot"] = df["tmax"] > threshold_95
     
-    # 3. Find consecutive hot days (Run-length encoding)
-    # Create a unique ID for each group of consecutive hot days
     df["block"] = (~df["is_hot"]).cumsum()
     hot_blocks = df[df["is_hot"]].groupby("block")
     
     events = []
     for _, group in hot_blocks:
         duration = len(group)
-        if duration >= 3:  # Heatwave definition: 3+ consecutive days
+        if duration >= 3: 
             events.append({
                 "start_date": group["date"].iloc[0].strftime("%Y-%m-%d"),
                 "end_date": group["date"].iloc[-1].strftime("%Y-%m-%d"),
@@ -33,7 +28,6 @@ def detect_heatwaves(df: pd.DataFrame) -> dict:
                 "avg_tmax": round(group["tmax"].mean(), 2)
             })
             
-    # 4. Calculate Annual Aggregates
     df["year"] = df["date"].dt.year
     annual_groups = df.groupby("year")
     

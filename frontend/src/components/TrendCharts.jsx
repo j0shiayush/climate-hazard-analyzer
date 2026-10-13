@@ -5,7 +5,6 @@ export default function TrendCharts({ data }) {
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6">
-      {/* Chart 1: Heatwave Frequency */}
       <div className="bg-white p-4 rounded-xl shadow-sm border border-gray-100">
         <h3 className="text-lg font-semibold mb-4 text-gray-700">Annual Heatwave Events</h3>
         <div className="h-72">
@@ -22,7 +21,6 @@ export default function TrendCharts({ data }) {
         </div>
       </div>
 
-      {/* Chart 2: Maximum Intensity */}
       <div className="bg-white p-4 rounded-xl shadow-sm border border-gray-100">
         <h3 className="text-lg font-semibold mb-4 text-gray-700">Max Heatwave Intensity (°C)</h3>
         <div className="h-72">

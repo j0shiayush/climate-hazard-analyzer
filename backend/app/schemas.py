@@ -1,4 +1,3 @@
-# app/schemas.py
 from pydantic import BaseModel, Field, field_validator
 
 class AnalyzeRequest(BaseModel):

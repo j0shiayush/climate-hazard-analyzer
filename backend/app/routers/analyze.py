@@ -1,4 +1,3 @@
-# app/routers/analyze.py
 from fastapi import APIRouter, HTTPException, Request
 from app.schemas import AnalyzeRequest
 from app.services.ingestion import get_clean_climate_data
@@ -10,11 +9,9 @@ router = APIRouter(prefix="/api/v1/analyze", tags=["Analyze"])
 @router.post("/")
 async def analyze_climate_hazard(request: Request, payload: AnalyzeRequest):
     try:
-        # Format dates for API
         start_date = f"{payload.start_year}-01-01"
         end_date = f"{payload.end_year}-12-31"
         
-        # 1. Fetch & Cache Data
         df = await get_clean_climate_data(
             lat=payload.lat, 
             lon=payload.lon, 
@@ -25,10 +22,8 @@ async def analyze_climate_hazard(request: Request, payload: AnalyzeRequest):
         if df.empty:
             raise HTTPException(status_code=404, detail="No weather data found for this region/time.")
 
-        # 2. Apply Domain Logic (Heatwave 95th Percentile)
         hazard_results = detect_heatwaves(df)
         
-        # 3. Apply Statistical Trends (Mann-Kendall & OLS)
         trends = calculate_trends(hazard_results["annual_stats"])
         
         return {

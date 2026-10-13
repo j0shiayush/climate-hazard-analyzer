@@ -1,4 +1,3 @@
-# app/services/statistics.py
 import pymannkendall as mk
 from scipy import stats
 import pandas as pd
@@ -14,13 +13,10 @@ def calculate_trends(annual_stats: list) -> dict:
     years = df["year"].values
     counts = df["heatwave_count"].values
 
-    # 1. OLS Linear Regression
     slope, intercept, r_value, p_value, std_err = stats.linregress(years, counts)
     
-    # 2. Mann-Kendall Trend Test
     mk_result = mk.original_test(counts)
 
-    # 3. Percentage Change (from first decade to last decade if data permits)
     try:
         first_5_avg = df["heatwave_count"].head(5).mean()
         last_5_avg = df["heatwave_count"].tail(5).mean()
