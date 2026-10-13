@@ -20,7 +20,7 @@ function App() {
     setLoading(true);
     setError(null);
     try {
-      const response = await axios.post('http://localhost:8000/api/v1/analyze/', {
+      const response = await axios.post('https://climate-hazard-analyzer-d9i8.onrender.com/api/v1/analyze/', {
         lat: position.lat,
         lon: position.lon,
         start_year: years.start || 1990, 
