@@ -32,12 +32,12 @@ def calculate_trends(annual_stats: list) -> dict:
         "linear_regression": {
             "slope": round(slope, 4),
             "p_value": round(p_value, 4),
-            "is_significant": p_value < 0.05
+            "is_significant": bool(p_value < 0.05)
         },
         "mann_kendall": {
-            "trend": mk_result.trend, # 'increasing', 'decreasing', or 'no trend'
-            "p_value": round(mk_result.p, 4),
-            "sens_slope": round(mk_result.slope, 4)
+            "trend": str(mk_result.trend),
+            "p_value": float(round(mk_result.p, 4)),
+            "sens_slope": float(round(mk_result.slope, 4))
         },
         "insights": {
             "percentage_change": round(pct_change, 1),
